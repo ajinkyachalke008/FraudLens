@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Orbitron:wght@700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-base: #020408;
+  --bg-surface: #080e14;
+  --bg-card: #0d1520;
+  --bg-overlay: #121c28;
+  --primary-500: #0ea5e9;
+  --primary-400: #38bdf8;
+  --primary-600: #0284c7;
+  --primary-glow: rgba(14, 165, 233, 0.15);
+  --danger-500: #ef4444;
+  --chart-5: #e11d48;
+  
+  /* FraudLens Graph Custom Variables */
+  --node-suspect: #ef4444; /* danger-500 */
+  --node-victim: #f59e0b; /* warning-500 */
+  --node-relay: #8b5cf6; /* violet-500 */
+  --node-clean: #10b981; /* safe-500 */
+  --node-unknown: #4b5563; /* gray-600 */
+  
+  --edge-high-value: #ef4444;
+  --edge-medium: #f59e0b;
+  --edge-low: #374151;
+  --danger-400: #f87171;
+  --danger-glow: rgba(239, 68, 68, 0.15);
+  --warning-500: #f59e0b;
+  --warning-400: #fbbf24;
+  --safe-500: #10b981;
+  --safe-400: #34d399;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #475569;
+  --border-default: rgba(148, 163, 184, 0.08);
+  --border-active: rgba(14, 165, 233, 0.4);
+  --node-suspect: #ef4444;
+  --node-victim: #f59e0b;
+  --node-relay: #8b5cf6;
+  --node-clean: #10b981;
+  --node-unknown: #475569;
+  --edge-high-value: #ef4444;
+  --edge-medium: #f59e0b;
+  --edge-low: #334155;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'IBM Plex Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}

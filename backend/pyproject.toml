@@ -1,0 +1,33 @@
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+select = ["E","W","F","I","B","C4","UP","N","SIM","TCH"]
+ignore = ["E501","B008","N803","N806"]
+exclude = [".venv","alembic","__pycache__"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+exclude = [".venv","alembic"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.coverage.run]
+source = ["."]
+omit = [".venv/*","tests/*","alembic/*","scripts/*"]
+
+[tool.coverage.report]
+skip_empty = true
+show_missing = true

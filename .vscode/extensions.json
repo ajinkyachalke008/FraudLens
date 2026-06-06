@@ -1,0 +1,19 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "charliermarsh.ruff",
+    "bradlc.vscode-tailwindcss",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "cweijan.vscode-postgresql-client2",
+    "jakeboone.cypher-query-language",
+    "ms-azuretools.vscode-docker",
+    "eamodio.gitlens",
+    "humao.rest-client",
+    "usernamehw.errorlens",
+    "ms-toolsai.jupyter",
+    "mikestead.dotenv",
+    "gruntfuggly.todo-tree"
+  ]
+}

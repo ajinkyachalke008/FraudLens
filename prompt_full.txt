@@ -1,0 +1,89 @@
+<USER_REQUEST>
+You are a senior DevOps and full-stack engineer. Your job is to completely set up the FraudLens development environment from scratch. Execute every step in the exact order given. Do not skip anything. After each major step, confirm it succeeded before moving to the next.
+
+═══════════════════════════════════════════════════════════
+PART 1 — VS CODE EXTENSIONS
+═══════════════════════════════════════════════════════════
+
+Install all extensions using the VS Code CLI. Run these commands one by one:
+
+# ── PYTHON & BACKEND ──
+code --install-extension ms-python.python
+code --install-extension ms-python.vscode-pylance
+code --install-extension ms-python.debugpy
+code --install-extension charliermarsh.ruff
+code --install-extension njpwerner.autodocstring
+code --install-extension kevinrose.vsc-python-indent
+code --install-extension wholroyd.jinja
+code --install-extension samuelcolvin.jinjahtml
+
+# ── FRONTEND & TYPESCRIPT ──
+code --install-extension bradlc.vscode-tailwindcss
+code --install-extension dbaeumer.vscode-eslint
+code --install-extension esbenp.prettier-vscode
+code --install-extension dsznajder.es7-react-js-snippets
+code --install-extension wix.vscode-import-cost
+code --install-extension styled-components.vscode-styled-components
+code --install-extension naumovs.color-highlight
+code --install-extension antfu.iconify
+
+# ── DATABASE & GRAPH ──
+code --install-extension cweijan.vscode-postgresql-client2
+code --install-extension jakeboone.cypher-query-language
+code --install-extension cweijan.vscode-redis-client
+code --install-extension mtxr.sqltools
+code --install-extension mtxr.sqltools-driver-pg
+
+# ── DOCKER & DEVOPS ──
+code --install-extension ms-azuretools.vscode-docker
+code --install-extension ms-vscode-remote.remote-containers
+code --in
+<truncated 34315 bytes>
+ED_IN, IS_VICTIM_IN
+GDS algorithms: PageRank, Betweenness, Louvain, LabelPropagation, Dijkstra, WCC, NodeSimilarity, TriangleCount
+
+SECURITY: JWT HS256 (60min access / 7day refresh), RBAC (admin/investigator/analyst/viewer), Redis sliding window rate limit, append-only audit_logs, bcrypt passwords
+
+INDIA-SPECIFIC: UPI IDs, DD/MM/YYYY date parsing, INR currency, IFSC codes, Indian cooperative bank account types, fuzzywuzzy column header matching at 70% threshold
+
+PORTS:
+- 3000: Next.js frontend
+- 8000: FastAPI backend
+- 7474: Neo4j Browser
+- 7687: Neo4j Bolt
+- 5432: PostgreSQL
+- 6379: Redis
+- 9092: Kafka
+- 2181: Zookeeper
+- 5050: pgAdmin
+- 8090: Kafka UI
+- 8081: Redis Commander
+- 5555: Flower (Celery monitor)
+- 8025: MailHog
+
+USEFUL MAKE COMMANDS:
+make up              → start all Docker services
+make both            → start backend + frontend together
+make neo4j-init      → run Neo4j constraints (run once)
+make kafka-create-topics → create all 5 Kafka topics
+make db-migrate      → run Alembic migrations
+make seed            → load test data
+make health          → check all service status
+make test            → run all tests
+make lint            → lint all code
+make clean           → remove build artifacts
+
+Now confirm you have read and understood everything. Then begin executing Part 1 through Part 8 in order. Report progress after each part completes.
+</USER_REQUEST>
+<ADDITIONAL_METADATA>
+The current local time is: 2026-06-05T10:26:23+05:30.
+
+The user's current state is as follows:
+Active Document: c:\Users\HP\Desktop\project1\.gitignore (LANGUAGE_UNSPECIFIED)
+Cursor is on line: 1
+Other open documents:
+- c:\Users\HP\Desktop\project1\.gitignore (LANGUAGE_UNSPECIFIED)
+</ADDITIONAL_METADATA>
+<USER_SETTINGS_CHANGE>
+The user changed setting `Model Selection` from Gemini 3.1 Pro (High) to Claude Opus 4.6 (Thinking). No need to comment on this change if the user doesn't ask about it. If reporting what model you are, please use a human readable name instead of the exact string.
+</USER_SETTINGS_CHANGE>

@@ -1,0 +1,102 @@
+<USER_REQUEST>
+# 🔍 FRAUDLENS — MASTER PLATFORM REFERENCE
+### Ultra-Detail Engineering Bible for Vibe Coding
+> **Built for:** Ajinkya Chalke × Pune Police Cybercrime Cell  
+> **Classification:** Internal Development Reference  
+> **Version:** 1.0.0-master  
+> **Stack:** Next.js 15 · FastAPI · Neo4j · PostgreSQL · PyTorch · D3.js · Redis · Kafka
+
+---
+
+## TABLE OF CONTENTS
+
+1. [Project Vision & Mission](#1-project-vision--mission)
+2. [High-Level Architecture](#2-high-level-architecture)
+3. [Module Map](#3-module-map)
+4. [Frontend Architecture](#4-frontend-architecture)
+5. [Backend Architecture](#5-backend-architecture)
+6. [Database Layer — PostgreSQL](#6-database-layer--postgresql)
+7. [Graph Database Layer — Neo4j](#7-graph-database-layer--neo4j)
+8. [ML Pipeline](#8-ml-pipeline)
+9. [GNN Architecture (Core)](#9-gnn-architecture-core)
+10. [Real-Time Processing — Kafka + Redis](#10-real-time-processing--kafka--redis)
+11. [Visualization Engine — D3.js](#11-visualization-engine--d3js)
+12. [Authentication & RBAC](#12-authentication--rbac)
+13. [Data Ingestion Pipeline](#13-data-ingestion-pipeline)
+14. [API Reference](#14-api-reference)
+15. [State Management](#15-state-management)
+16. [DevOps & CI/CD](#16-devops--cicd)
+17. [Security Architecture](#17-security-architecture)
+18. [Performance Optimization](#18-performance-optimization)
+19. [Testing Strategy](#19-testing-strategy)
+20. [Open Source References](#20-open-source-references)
+21. [Environment Variables](#21-environment-variables)
+22. [Project Folder Structure](#22-project-folder-structure)
+23. [Roadmap & MVP Milestones](#23-roadmap--mvp-milestones)
+
+---
+
+## 1. PROJECT VISION & MISSION
+
+### What is FraudLens?
+
+FraudLens is a **Graph Neural Network-powered financial fraud investigation platform** built in direct collaboration with the **Pune Police Cybercrime Cell**. It transforms raw financial transaction data (Excel sheets from police records) into an interactive, AI-powered intelligence system that detect
+<truncated 45215 bytes>
+dule):
+    """
+    Multi-layer GraphSAGE + GAT hybrid for fraud node classification.
+
+    Architecture:
+    - Layer 1: SAGEConv (neighborhood aggregation)
+    - Layer 2: GATConv (attention-weighted neighbors — high-risk neighbors get more weight)
+    - Layer 3: SAGEConv (second-order neighborhoods)
+    - Output: 2-class softmax (fraud / clean)
+    """
+
+    def __init__(
+        self,
+        in_channels: int = 6,       # node feature count
+        hidden_channels: int = 128,
+        out_channels: int = 2,       # fraud vs clean
+        num_heads: int = 4,          # GAT attention heads
+        dropout: float = 0.3
+    ):
+        super().__init__()
+        self.dropout = dropout
+
+        # Layer 1: Neighborhood aggregation
+        self.conv1 = SAGEConv(in_channels, hidden_channels, aggr='mean')
+        self.bn1 = BatchNorm(hidden_channels)
+
+        # Layer 2: Multi-head attention (catches high-risk neighbor influence)
+        self.conv2 = GATConv(
+            hidden_channels,
+            hidden_channels // num_heads,
+            heads=num_heads,
+            concat=True,
+            dropout=dropout,
+            edge_dim=2              # edge features: amount, risk_flag
+        )
+        self.bn2 = BatchNorm(hidden_channels)
+
+        # Layer 3: Higher-order aggregation
+        self.conv3 = SAGEConv(hidden_channels, hidden_channels // 2, aggr='max')
+        self.bn3 = BatchNorm(hidden_channels // 2)
+
+        # Classifier head
+        self.classifier = nn.Sequential(
+            nn.Linear(hidden_channels // 2, 64),
+            nn.ReLU(),
+            nn.Dropout(dropout),
+            nn.Linear(64, out_channels)
+        )
+
+    def forward(self, x, edge_index, edge_attr=None):
+        # Layer 1
+        x = self.conv1(x, edge_index)
+        x = self.bn1(x)
+        x = F.elu(x)
+        x = F.dropout(x, p=self.dro
+<truncated 38674 bytes>
+
+NOTE: The output was truncated because it was too long. Use a more targeted query or a smaller range to get the information you need.
