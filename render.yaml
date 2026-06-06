@@ -32,4 +32,6 @@ services:
         value: https://frontend-lemon-theta-90.vercel.app
       - key: PYTHONPATH
         value: /app
+      - key: MAX_UPLOAD_SIZE_MB
+        value: "100"
     healthCheckPath: /health
