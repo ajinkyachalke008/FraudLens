@@ -1,6 +1,7 @@
 <p align="center">
   <img src="https://img.shields.io/badge/FraudLens-1.0-blueviolet?style=for-the-badge&logoColor=white" alt="FraudLens 1.0"/>
   <img src="https://img.shields.io/badge/Status-Production_Ready-success?style=for-the-badge" alt="Status"/>
+  <img src="https://img.shields.io/github/actions/workflow/status/ajinkyachalke008/FraudLens/ci.yml?branch=main&style=for-the-badge&label=CI" alt="CI"/>
   <img src="https://img.shields.io/github/license/ajinkyachalke008/FraudLens?style=for-the-badge" alt="License"/>
 </p>
 
