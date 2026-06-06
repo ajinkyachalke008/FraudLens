@@ -1,4 +1,3 @@
-import shap
 import pandas as pd
 import numpy as np
 
@@ -11,14 +10,6 @@ class FraudExplainer:
         self.model = model
         self.feature_names = feature_names
         self.explainer = None
-        
-        # If the model is an sklearn IsolationForest, we can use TreeExplainer
-        if model and hasattr(model, 'estimators_'):
-            try:
-                # TreeExplainer is experimental for IsolationForest but works for basic feature attr
-                self.explainer = shap.TreeExplainer(model)
-            except Exception:
-                self.explainer = None
         
     def generate_explanation(self, features: dict) -> dict:
         """
