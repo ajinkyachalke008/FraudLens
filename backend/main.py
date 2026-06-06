@@ -49,11 +49,16 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[os.getenv("FRONTEND_URL", "http://localhost:3000")],
+    allow_origins=[
+        os.getenv("FRONTEND_URL", "http://localhost:3000"),
+        "http://localhost:3000",
+        "https://frontend-lemon-theta-90.vercel.app",
+    ],
     allow_methods=["*"],
     allow_headers=["*"],
     allow_credentials=True,
 )
+
 
 app.include_router(api_router, prefix="/api/v1")
 

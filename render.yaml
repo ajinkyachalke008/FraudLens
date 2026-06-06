@@ -1,0 +1,35 @@
+databases:
+  - name: fraudlens-db
+    plan: free
+    databaseName: fraudlens
+    user: fraudlens
+
+services:
+  - type: web
+    name: fraudlens-api
+    plan: free
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: fraudlens-db
+          property: connectionString
+      - key: NEO4J_URI
+        value: DISABLED
+      - key: NEO4J_USER
+        value: neo4j
+      - key: NEO4J_PASSWORD
+        value: none
+      - key: REDIS_URL
+        value: DISABLED
+      - key: KAFKA_BOOTSTRAP_SERVERS
+        value: DISABLED
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FRONTEND_URL
+        value: https://frontend-lemon-theta-90.vercel.app
+      - key: PYTHONPATH
+        value: /app
+    healthCheckPath: /health
