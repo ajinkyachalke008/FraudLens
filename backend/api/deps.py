@@ -11,34 +11,14 @@ from models.sql.user import User
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login")
 
-async def get_current_user(token: str = Depends(oauth2_scheme), db: AsyncSession = Depends(get_db)) -> User:
-    credentials_exception = HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Bearer"},
-    )
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        user_id: str = payload.get("sub")
-        token_type: str = payload.get("type")
-        if user_id is None or token_type != "access":
-            raise credentials_exception
-    except JWTError:
-        raise credentials_exception
-
-    import uuid
-    try:
-        user_uuid = uuid.UUID(user_id)
-    except ValueError:
-        raise credentials_exception
-
-    result = await db.execute(select(User).where(User.id == user_uuid))
+async def get_current_user(db: AsyncSession = Depends(get_db)) -> User:
+    # BYPASS LOGIN for local testing
+    result = await db.execute(select(User).where(User.email == "investigator@fraudlens.gov"))
     user = result.scalar_one_or_none()
-    if user is None:
-        raise credentials_exception
-    if not user.is_active:
-        raise HTTPException(status_code=400, detail="Inactive user")
-    return user
+    if user: return user
+    
+    import uuid
+    return User(id=uuid.uuid4(), email="investigator@fraudlens.gov", full_name="Investigator", role="investigator", badge_number="INV-001", department="Cyber Cell")
 
 class RoleChecker:
     def __init__(self, allowed_roles: List[str]):

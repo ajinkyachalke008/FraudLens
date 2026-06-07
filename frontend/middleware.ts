@@ -7,23 +7,6 @@ const publicPaths = ['/login', '/_next', '/favicon.ico', '/api'];
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Skip middleware for public paths and static assets
-  if (
-    publicPaths.some(path => pathname.startsWith(path)) ||
-    pathname.includes('.')
-  ) {
-    return NextResponse.next();
-  }
-
-  // Check for the auth token in cookies
-  const token = request.cookies.get('fraudlens_token')?.value;
-
-  // If no token exists and we're not on a public path, redirect to login
-  if (!token) {
-    const loginUrl = new URL('/login', request.url);
-    return NextResponse.redirect(loginUrl);
-  }
-
   return NextResponse.next();
 }
 

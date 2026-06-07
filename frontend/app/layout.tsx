@@ -3,6 +3,7 @@ import './globals.css'
 import Providers from './providers'
 import GlobalSidebar from '@/components/layout/GlobalSidebar'
 import TopBar from '@/components/layout/TopBar'
+import { Toaster } from 'sonner'
 
 export const metadata: Metadata = {
   title: 'FraudLens — Cybercrime Intelligence Platform',
@@ -26,6 +27,7 @@ export default function RootLayout({
             </main>
           </div>
         </Providers>
+        <Toaster theme="dark" position="top-right" richColors />
       </body>
     </html>
   )

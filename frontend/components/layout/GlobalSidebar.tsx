@@ -2,12 +2,21 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Shield, Network, Brain, Settings } from 'lucide-react';
+import { Shield, Network, Brain, Settings, Upload, Eye, Fingerprint, Users, Bell, FileText, Map as MapIcon, Lightbulb, ShieldAlert, Globe } from 'lucide-react';
 import type { Route } from 'next';
 
-const navItems: { href: Route; label: string; icon: typeof Shield; shortLabel: string }[] = [
+const navItems: { href: Route; label: string; icon: any; shortLabel: string }[] = [
   { href: '/' as Route, label: 'Mission Control', icon: Shield, shortLabel: 'HQ' },
   { href: '/graph' as Route, label: 'Graph Intel', icon: Network, shortLabel: 'GRAPH' },
+  { href: '/ingest' as Route, label: 'Data Ingest', icon: Upload, shortLabel: 'DATA' },
+  { href: '/watchlist' as Route, label: 'Watchlist', icon: Eye, shortLabel: 'WATCH' },
+  { href: '/map' as Route, label: 'Map', icon: MapIcon, shortLabel: 'MAP' },
+  { href: '/patterns' as Route, label: 'Patterns', icon: Fingerprint, shortLabel: 'PTNS' },
+  { href: '/reports' as Route, label: 'Reports', icon: FileText, shortLabel: 'RPRT' },
+  { href: '/entities' as Route, label: 'Entities', icon: Users, shortLabel: 'LINK' },
+  { href: '/osint' as Route, label: 'OSINT Enrichment', icon: Globe, shortLabel: 'OSINT' },
+  { href: '/intelligence' as Route, label: 'Intelligence', icon: Lightbulb, shortLabel: 'INTEL' },
+  { href: '/alerts' as Route, label: 'Alerts', icon: ShieldAlert, shortLabel: 'ALRT' },
   { href: '/ml' as Route, label: 'ML Core', icon: Brain, shortLabel: 'ML' },
 ];
 

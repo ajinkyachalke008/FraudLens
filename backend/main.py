@@ -32,6 +32,8 @@ async def lifespan(app: FastAPI):
     # Launch the consumer as a background asyncio task so it doesn't block FastAPI
     asyncio.create_task(start_consumer())
     
+    # Alert Escalation Engine is now handled by external Arq worker (worker.py)
+    
     print("FraudLens API starting up...")
     yield
     

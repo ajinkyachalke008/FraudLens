@@ -1,0 +1,42 @@
+{
+  "HDFC0001234": {
+    "bank": "HDFC Bank",
+    "branch": "Kalyani Nagar, Pune",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "address": "Ground Floor, Gold Adlabs Multiplex, Kalyani Nagar, Pune 411014",
+    "contact": "18002026161"
+  },
+  "SBIN0009876": {
+    "bank": "State Bank of India",
+    "branch": "Hinjewadi IT Park",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "address": "Phase 1, Hinjewadi Rajiv Gandhi Infotech Park, Pune 411057",
+    "contact": "1800112211"
+  },
+  "ICIC0000005": {
+    "bank": "ICICI Bank",
+    "branch": "Bund Garden Road",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "address": "A Wing, Shangrila Gardens, Bund Garden Road, Pune 411001",
+    "contact": "18001080"
+  },
+  "UTIB0000037": {
+    "bank": "Axis Bank",
+    "branch": "FC Road, Deccan Gymkhana",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "address": "Sakar 10, Fergusson College Road, Shivaji Nagar, Pune 411004",
+    "contact": "18004195959"
+  },
+  "PUNB0002820": {
+    "bank": "Punjab National Bank",
+    "branch": "Camp, M.G. Road",
+    "city": "Pune",
+    "state": "Maharashtra",
+    "address": "Moledina Road, Camp Area, Pune 411001",
+    "contact": "18001802222"
+  }
+}

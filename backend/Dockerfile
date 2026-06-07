@@ -1,35 +1,29 @@
-# ═══════════════════════════════════════════
-# FraudLens Backend — Production Dockerfile
-# ═══════════════════════════════════════════
-FROM python:3.11-slim AS base
+# Use official Python lightweight image
+FROM python:3.12-slim
 
+# Set working directory
 WORKDIR /app
 
-# System dependencies for asyncpg, numpy, scikit-learn
-RUN apt-get update && apt-get install -y --no-install-recommends \
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
     gcc \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
 COPY requirements.txt .
-RUN pip install --upgrade pip && \
-    pip install torch==2.3.0 torchvision==0.18.0 --index-url https://download.pytorch.org/whl/cpu && \
-    pip install --no-cache-dir --default-timeout=1000 -r requirements.txt
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
+# Copy the backend source code
 COPY . .
 
-# Set Python path so modules can import from the project root
-ENV PYTHONPATH=/app
+# Expose the API port
+EXPOSE 8001
 
-# Create non-root user for security
-RUN addgroup --system --gid 1001 fraudlens \
-    && adduser --system --uid 1001 --ingroup fraudlens api
-
-USER api
-
-EXPOSE 8000
-
-# Production: no --reload flag
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2", "--log-level", "info"]
+# Command to run the application
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8001"]

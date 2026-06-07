@@ -7,6 +7,8 @@ from streaming.consumer import STREAM_METRICS
 from jose import jwt, JWTError
 from core.security import SECRET_KEY, ALGORITHM
 from core.pubsub import subscribe_alerts
+from core.database import AsyncSessionLocal
+from services.alerts.alert_engine import acknowledge_alert
 
 logger = logging.getLogger(__name__)
 
@@ -70,11 +72,20 @@ async def websocket_endpoint(websocket: WebSocket):
 
     try:
         while True:
-            # We just hold the connection open. The client doesn't need to send us anything.
-            # But we must `receive_text` to detect client disconnects.
             data = await websocket.receive_text()
             if data == "ping":
                 await websocket.send_text("pong")
+            else:
+                try:
+                    msg = json.loads(data)
+                    if msg.get("type") == "ALERT_ACK":
+                        alert_id = msg.get("alert_id")
+                        if alert_id:
+                            async with AsyncSessionLocal() as db:
+                                await acknowledge_alert(alert_id, user_id, db)
+                                await db.commit()
+                except json.JSONDecodeError:
+                    pass
     except WebSocketDisconnect:
         manager.disconnect(websocket)
 

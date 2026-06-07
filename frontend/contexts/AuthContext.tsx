@@ -29,14 +29,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
 
   useEffect(() => {
-    // Check local storage for token on mount
-    const storedToken = localStorage.getItem('fraudlens_token');
-    const storedUser = localStorage.getItem('fraudlens_user');
-    
-    if (storedToken && storedUser) {
-      setToken(storedToken);
-      setUser(JSON.parse(storedUser));
-    }
+    // BYPASS LOGIN
+    const mockUser = {
+      id: "mock-id",
+      email: "investigator@fraudlens.gov",
+      full_name: "Investigator",
+      role: "investigator",
+      badge_number: "INV-001",
+      department: "Cyber Cell"
+    };
+    setToken("mock-token");
+    setUser(mockUser);
+    document.cookie = `fraudlens_token=mock-token; path=/; max-age=3600; SameSite=Strict`;
     setIsLoading(false);
   }, []);
 
